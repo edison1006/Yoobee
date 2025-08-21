@@ -62,13 +62,3 @@ python app.py delete enrollment --offering_id 1 --student_id 1
 - `app.py` contains subcommands and validates minimal required fields.
 - Cascade behavior is intentional on some relationships for convenient cleanup
   (e.g., deleting a SCHOOL may delete its PROGRAMMES/COURSES). Adjust as needed.
-
-## Upload to GitHub
-```bash
-git init
-git add .
-git commit -m "Week 3 – Activity 4: University ERD SQLite CLI"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-repo>.git
-git push -u origin main
-```
