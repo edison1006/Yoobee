@@ -1,0 +1,43 @@
+Actors (3 total)
+
+    Student – main user who registers, enrolls in courses, attends classes, and submits assignments.
+
+    Lecturer – teaches courses, manages classes, uploads materials, grades assignments, and gives feedback.
+
+    Administrator – manages student and lecturer records, approves courses, allocates classrooms and time slots, and generates reports.
+
+Use Cases (12 total)
+
+    For Student
+
+        Register and update profile.
+
+        Enroll in courses.
+
+        View timetable / class schedule.
+
+        Submit assignments.
+
+        View grades and feedback.
+
+    For Lecturer
+
+        Create and update courses.
+
+        Schedule and manage classes.
+
+        Upload teaching materials.
+
+        Grade assignments.
+
+        Provide feedback to students.
+
+    For Administrator
+
+        Manage student and lecturer records.
+
+        Approve course offerings.
+
+        Allocate classrooms and time slots.
+
+        Generate reports (enrollment, performance, attendance).
