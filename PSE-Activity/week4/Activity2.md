@@ -1,43 +1,51 @@
 ```mermaid
     flowchart TB
-  %% Activity Diagram — College AMS (Two Main Activities)
+  %% Activity Diagram — College AMS (Student / Lecturer / Admin Systems)
 
-  start([Start])
+  start([Start]):::s
+  endx([End]):::s
 
-  %% --- Activity A: Student Learning Flow ---
-  subgraph A ["Activity A - Student Learning Flow"]
-    A1["Register / Update Profile"]
-    A2["Enroll in Courses"]
-    A3["View Timetable / Schedule"]
-    A4["Submit Assignments"]
-    A5["View Grades & Feedback"]
+  %% ===== Student System =====
+  subgraph STU ["Student System"]
+    ST1["Register / Update Profile"]
+    ST2["Enroll in Courses"]
+    ST3["View Timetable / Materials"]
+    ST4["Submit Assignments"]
+    ST5["View Grades & Feedback"]
   end
 
-  %% --- Activity B: Academic Administration Flow ---
-  subgraph B ["Activity B - Academic Administration Flow"]
-    B1["Create / Update Courses"]
-    B2["Schedule & Manage Classes"]
-    B3["Approve Course Offerings"]
-    B4["Allocate Classrooms & Time Slots"]
-    B5["Upload Teaching Materials"]
-    B6["Grade Assignments"]
-    B7["Provide Feedback"]
-    B8["Generate Reports"]
+  %% ===== Lecturer System =====
+  subgraph LEC ["Lecturer System"]
+    L1["Create / Update Courses"]
+    L2["Schedule & Manage Classes"]
+    L3["Upload Teaching Materials"]
+    L4["Grade Assignments"]
+    L5["Provide Feedback"]
   end
 
-  endx([End])
+  %% ===== Admin System =====
+  subgraph ADM ["Admin System"]
+    A1["Manage Student & Lecturer Records"]
+    A2["Approve Course Offerings"]
+    A3["Allocate Classrooms & Time Slots"]
+    A4["Generate Reports"]
+  end
 
-  %% --- Main flow wiring ---
-  %% Student side
-  start --> A1 --> A2 --> A3 --> A4 --> A5 --> endx
+  %% --- Student flow
+  start --> ST1 --> ST2 --> ST3 --> ST4 --> ST5 --> endx
 
-  %% Admin/lecturer side
-  start --> B1 --> B2 --> B3 --> B4 --> B5 --> B6 --> B7 --> B8 --> endx
+  %% --- Lecturer flow
+  start --> L1 --> L2 --> L3 --> L4 --> L5 --> endx
 
-  %% --- Cross-lane interactions (key handoffs) ---
-  %% Materials published -> student views timetable/materials
-  B5 -->|"Materials available"| A3
-  %% Student submits -> lecturer grades
-  A4 -->|"Submission received"| B6
-  %% Lecturer feedback -> student views grades & feedback
-  B7 -->|"Grades & comments"| A5
+  %% --- Admin flow
+  start --> A1 --> A2 --> A3 --> A4 --> endx
+
+  %% --- Cross-system interactions
+  L3 -->|"Materials available"| ST3
+  ST4 -->|"Submission received"| L4
+  L5  -->|"Grades & comments"| ST5
+  L2  -->|"Timetable published"| ST3
+  A2  -->|"Offering approved"| L2
+  A3  -->|"Room/time assigned"| L2
+
+  classDef s fill:#f5f5f5,stroke:#999,color:#333;
