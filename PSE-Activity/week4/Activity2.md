@@ -2,8 +2,8 @@
     flowchart TB
   %% Activity Diagram — College AMS (Student / Lecturer / Admin Systems)
 
-  start([Start]):::s
-  endx([End]):::s
+  start([Start]):::startend
+  endx([End]):::startend
 
   %% ===== Student System =====
   subgraph STU ["Student System"]
@@ -48,4 +48,13 @@
   A2  -->|"Offering approved"| L2
   A3  -->|"Room/time assigned"| L2
 
-  classDef s fill:#f5f5f5,stroke:#999,color:#333;
+  %% ==== Styles ====
+  classDef student fill:#dcfce7,stroke:#16a34a,color:#065f46,stroke-width:1.5px;
+  classDef lecturer fill:#dbeafe,stroke:#2563eb,color:#1e3a8a,stroke-width:1.5px;
+  classDef admin fill:#fef3c7,stroke:#f59e0b,color:#7c2d12,stroke-width:1.5px;
+  classDef startend fill:#f3f4f6,stroke:#374151,color:#111827,stroke-width:2px;
+
+  %% Apply classes
+  class ST1,ST2,ST3,ST4,ST5 student;
+  class L1,L2,L3,L4,L5 lecturer;
+  class A1,A2,A3,A4 admin;
