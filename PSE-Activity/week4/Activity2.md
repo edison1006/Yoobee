@@ -1,48 +1,43 @@
 ```mermaid
     flowchart TB
-  %% Activity Diagram: Smart Task Manager (Two Main Activities)
+  %% Activity Diagram — College AMS (Two Main Activities)
 
   start([Start])
 
-  %% Swimlanes via subgraphs
-  subgraph A ["Activity A - Task Management"]
-    A1["Open App"]
-    A2{"Logged in user? (optional)"}
-    A3["View Task List & Stats"]
-    A4["Search/Filter by query/status/priority/tag"]
-    A5{"Create / Edit / Delete / Toggle?"}
-    A6["Create/Edit Task via Modal"]
-    A7["Toggle Done/Undone"]
-    A8["Delete Task"]
-    A9["Update UI (cards, badges, progress bar)"]
+  %% --- Activity A: Student Learning Flow ---
+  subgraph A ["Activity A - Student Learning Flow"]
+    A1["Register / Update Profile"]
+    A2["Enroll in Courses"]
+    A3["View Timetable / Schedule"]
+    A4["Submit Assignments"]
+    A5["View Grades & Feedback"]
   end
 
-  subgraph B ["Activity B - Data Operations"]
-    B1["Persist tasks to localStorage"]
-    B2{"Import JSON?"}
-    B3["Choose file -> Parse JSON"]
-    B4["Replace current tasks"]
-    B5{"Export JSON?"}
-    B6["Download tasks-export.json"]
+  %% --- Activity B: Academic Administration Flow ---
+  subgraph B ["Activity B - Academic Administration Flow"]
+    B1["Create / Update Courses"]
+    B2["Schedule & Manage Classes"]
+    B3["Approve Course Offerings"]
+    B4["Allocate Classrooms & Time Slots"]
+    B5["Upload Teaching Materials"]
+    B6["Grade Assignments"]
+    B7["Provide Feedback"]
+    B8["Generate Reports"]
   end
+
   endx([End])
 
-  %% Flow
-  start --> A1 --> A2
-  A2 -->|"Yes/Skip"| A3 --> A4 --> A5
-  A2 -->|"No (optional auth later)"| A3
+  %% --- Main flow wiring ---
+  %% Student side
+  start --> A1 --> A2 --> A3 --> A4 --> A5 --> endx
 
-  A5 -->|"Create/Edit"| A6 --> A9
-  A5 -->|"Toggle"| A7 --> A9
-  A5 -->|"Delete"| A8 --> A9
-  A5 -->|"None"| A9
+  %% Admin/lecturer side
+  start --> B1 --> B2 --> B3 --> B4 --> B5 --> B6 --> B7 --> B8 --> endx
 
-  %% Data ops run whenever tasks change or user triggers import/export
-  A9 --> B1
-  B1 --> B2
-  B2 -->|"Yes"| B3 --> B4 --> A3
-  B2 -->|"No"| B5
-  B5 -->|"Yes"| B6 --> A3
-  B5 -->|"No"| A3
-
-  A3 --> endx
+  %% --- Cross-lane interactions (key handoffs) ---
+  %% Materials published -> student views timetable/materials
+  B5 -->|"Materials available"| A3
+  %% Student submits -> lecturer grades
+  A4 -->|"Submission received"| B6
+  %% Lecturer feedback -> student views grades & feedback
+  B7 -->|"Grades & comments"| A5
