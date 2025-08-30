@@ -21,11 +21,11 @@ class Teacher:
 
 if __name__ == "__main__":
     s = Student("Ali", 20)
-    print(s.name)          
-    print(s._age)          
-    print(s.get_grade())   
-    print(s.has_passed())  
+    print('Name: ', s.name)        
+    print('Age: ',s._age)          
+    print('Grade: ',s.get_grade())   
+    print('Passed: ',s.has_passed())  
 
-    t = Teacher("Mr. Smith", "Math")
+    t = Teacher("Mr. Tom", "Math")
     print(t.show_info())   
 
