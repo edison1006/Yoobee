@@ -7,9 +7,6 @@ class Student:
     def get_grade(self):
         return self.__grade
 
-    def has_passed(self):
-        return self.__grade in ['A', 'B', 'C']
-
 class Teacher:
     def __init__(self, name, subject):
         self.name = name          # Public attribute
@@ -21,11 +18,11 @@ class Teacher:
 
 if __name__ == "__main__":
     s = Student("Ali", 20)
-    print('Name: ', s.name)        
-    print('Age: ',s._age)          
-    print('Grade: ',s.get_grade())   
-    print('Passed: ',s.has_passed())  
+    print(s.name)          
+    print(s._age)          
+    print(s.get_grade())   
 
-    t = Teacher("Mr. Tom", "Math")
+    t = Teacher("Mr. Smith", "Math")
     print(t.show_info())   
+
 
