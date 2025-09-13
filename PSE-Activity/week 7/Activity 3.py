@@ -1,14 +1,10 @@
 from abc import ABC, abstractmethod
 
-
-# ---------- 1) Abstract Product ----------
 class PaymentMethod(ABC):
     @abstractmethod
     def process_payment(self, amount: float) -> str:
         pass
 
-
-# ---------- 2) Concrete Products ----------
 class CreditCardPayment(PaymentMethod):
     def process_payment(self, amount: float) -> str:
         return f"Processing ${amount:.2f} via Credit Card"
@@ -33,8 +29,6 @@ class GooglePayPayment(PaymentMethod):
     def process_payment(self, amount: float) -> str:
         return f"Processing ${amount:.2f} via Google Pay"
 
-
-# ---------- 3) Factory ----------
 class PaymentFactory:
     @staticmethod
     def create_payment(method: str) -> PaymentMethod:
@@ -52,8 +46,6 @@ class PaymentFactory:
         else:
             raise ValueError(f"Unknown payment method: {method}")
 
-
-# ---------- 4) Singleton ----------
 class PaymentGateway:
     _instance = None
 
@@ -66,13 +58,11 @@ class PaymentGateway:
         payment_obj = PaymentFactory.create_payment(method)
         return payment_obj.process_payment(amount)
 
-
-# ---------- 5) Demo ----------
 if __name__ == "__main__":
     gateway1 = PaymentGateway()
     gateway2 = PaymentGateway()
 
-    print(gateway1 is gateway2)  # True → Singleton works
+    print(gateway1 is gateway2)  
 
     methods = ["creditcard", "paypal", "bank_transfer", "crypto", "googlepay"]
     for m in methods:
