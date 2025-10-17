@@ -1,0 +1,66 @@
+Eye-Game VR Application – Requirements Summary
+==============================================================
+
+Group Name: Group N
+Project Title: Eye-Game VR Application
+
+Team Members:
+- Xiaoyu Zhang
+- S M Shawon
+
+--------------------------------------------------------------
+1. Functional Requirements
+--------------------------------------------------------------
+
+No | Requirement | Description | Status
+---|--------------|--------------|--------
+F1 | User Authentication (optional future module) | Allow users/researchers to log in and record data linked to their profile. | Passed
+F2 | Game Data Capture | Collects real-time game-point coordinates (x, y, z) and eye-movement vectors using the VR headset sensors. | Not Passed
+F3 | Head Movement Tracking | Synchronises head rotation and position with game direction to improve accuracy. | Not passed
+F4 | Data Logging & Storage | Saves game and head-movement data as structured CSV/JSON files for later analysis. | Passed
+F5 | Visual Feedback in VR | Displays game rays or cursor overlays showing the user’s focus point in the virtual scene. | Not passed
+F6 | Fixation & Saccade Detection | Identifies fixation periods (steady game) and saccades (rapid movements). | Not passed
+F7 | Data Analysis Module | Calculates metrics such as average fixation time, scan paths, and attention duration. | Not passed
+F8 | Export Report | Generates analysis summary (.csv/.pdf) for further research. | In progress
+F9 | User Calibration | Provides initial calibration to align game data with headset sensors. | Not passed
+F10 | Integration with OpenVR/Unity3D | Connects Python backend with VR environment for live feedback. | Not passed
+
+--------------------------------------------------------------
+2. Non-Functional Requirements
+--------------------------------------------------------------
+
+No | Requirement | Description | Status
+---|--------------|--------------|--------
+N1 | Performance | Real-time processing of game data at ≥ 60 fps without latency above 0.1 s. | Not passed
+N2 | Accuracy | Eye-tracking precision within ± 1 degree visual angle. | Not passed
+N3 | Usability | Intuitive interface with minimal configuration for researchers. | Not passed
+N4 | Reliability | System continues functioning even with brief tracking interruptions. | Passed
+N5 | Scalability | Supports additional sensors or multiple participants in future updates. | Not passed
+N6 | Maintainability | Modular design: separate files for data capture, analysis, and VR rendering. | Not passed
+N7 | Security & Privacy | Anonymises recorded game data and removes personal identifiers. | Not passed
+N8 | Compatibility | Runs on Windows / macOS / VR headsets (e.g., Meta Quest 2). | Not passed
+N9 | Portability | Easy to integrate with Unity or Unreal via API. | Not passed
+N10 | Documentation | Complete docstrings, inline comments, and user manual provided. | Not passed
+
+--------------------------------------------------------------
+3. Summary
+--------------------------------------------------------------
+
+Total Functional Requirements: 10
+Passed = 1    In progress = 1   Not passed = 8
+
+Total Non-Functional Requirements: 10
+Passed = 1    In progress = 0   Not passed = 9
+
+Overall Progress ≈ 10% Completed
+
+--------------------------------------------------------------
+4. Next Steps
+--------------------------------------------------------------
+
+1. Implement calibration (F10) for game alignment.
+2. Improve performance for real-time rendering.
+3. Add user login & secure cloud data storage.
+
+--------------------------------------------------------------
+End of Report
