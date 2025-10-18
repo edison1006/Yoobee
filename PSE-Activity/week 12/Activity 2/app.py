@@ -2,34 +2,38 @@ from flask import Flask, render_template, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, template_folder="templates", static_folder="static")
 app.secret_key = "dev-secret"
+
 UPLOAD_FOLDER = os.path.join(app.root_path, "static", "uploads")
-ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 os.makedirs(UPLOAD_FOLDER, exist_ok=True)
+ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg", "gif", "webp"}
 
 def allowed_file(filename):
     return "." in filename and filename.rsplit(".", 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route("/", methods=["GET"])
+@app.route("/")
 def index():
     return render_template("index.html")
 
 @app.route("/preview", methods=["POST"])
 def preview():
-    link_text = request.form.get("link_text", "").strip() or "Example link"
-    link_url  = request.form.get("link_url", "").strip()  or "https://www.example.com"
+    link_text = request.form.get("link_text", "").strip() or "Example Link"
+    link_url = request.form.get("link_url", "").strip() or "https://www.example.com"
     img_url_input = request.form.get("image_url", "").strip()
 
     image_url = None
+
+    # Option 1: Image URL input
     if img_url_input:
         image_url = img_url_input
 
+    # Option 2: File upload
     if not image_url and "image_file" in request.files:
         file = request.files["image_file"]
         if file and file.filename:
             if not allowed_file(file.filename):
-                flash("Unsupported file type. Allowed: png, jpg, jpeg, gif, webp")
+                flash("Only PNG, JPG, JPEG, GIF, WEBP allowed.")
                 return redirect(url_for("index"))
             filename = secure_filename(file.filename)
             save_path = os.path.join(UPLOAD_FOLDER, filename)
@@ -37,10 +41,10 @@ def preview():
             image_url = url_for("static", filename=f"uploads/{filename}")
 
     if not image_url:
-        flash("Please provide an image URL or upload an image file.")
+        flash("Please provide an image URL or upload a file.")
         return redirect(url_for("index"))
 
     return render_template("result.html", link_text=link_text, link_url=link_url, image_url=image_url)
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5004)
+    app.run(debug=True, port=5006)

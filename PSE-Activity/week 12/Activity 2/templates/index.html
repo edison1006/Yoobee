@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hyperlink & Image App</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 50px auto; }
+    input, button { width: 100%; padding: 10px; margin: 10px 0; }
+    button { background-color: #007BFF; color: white; border: none; cursor: pointer; }
+    button:hover { background-color: #0056b3; }
+    .error { color: red; }
+  </style>
+</head>
+<body>
+  <h2>Enter a Hyperlink and Image</h2>
+
+  {% with messages = get_flashed_messages() %}
+    {% if messages %}
+      <p class="error">{{ messages[0] }}</p>
+    {% endif %}
+  {% endwith %}
+
+  <form method="POST" action="/preview" enctype="multipart/form-data">
+    <label>Link Text:</label>
+    <input type="text" name="link_text" placeholder="Example: Visit My Portfolio">
+
+    <label>Link URL:</label>
+    <input type="url" name="link_url" placeholder="https://example.com">
+
+    <label>Image URL (optional):</label>
+    <input type="url" name="image_url" placeholder="https://example.com/image.jpg">
+
+    <label>OR Upload Image:</label>
+    <input type="file" name="image_file" accept="image/*">
+
+    <button type="submit">Preview</button>
+  </form>
+</body>
+</html>

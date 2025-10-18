@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Preview Result</title>
+  <style>
+    body { font-family: Arial, sans-serif; max-width: 700px; margin: 50px auto; }
+    a { color: #007BFF; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    img { width: 100%; max-width: 500px; border-radius: 8px; margin-top: 20px; }
+  </style>
+</head>
+<body>
+  <h2>Preview</h2>
+  <p><strong>Your Link:</strong> <a href="{{ link_url }}" target="_blank">{{ link_text }}</a></p>
+  {% if image_url %}
+    <p><strong>Your Image:</strong></p>
+    <img src="{{ image_url }}" alt="User Image" referrerpolicy="no-referrer">
+  {% endif %}
+  <p><a href="/">Back</a></p>
+</body>
+</html>
