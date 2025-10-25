@@ -3,7 +3,7 @@ from openai import OpenAI
 
 
 def instructor_chatbot():
-    client = OpenAI(api_key="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")
+    client = OpenAI(api_key="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")
 
     """Command-line AI Itinerary Chatbot."""
     print("Welcome to AI Itinerary recommender! Answer a few questions to get personalized itenary advice.\n")
