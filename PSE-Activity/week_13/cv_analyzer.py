@@ -17,7 +17,7 @@ from openai import OpenAI
 # 1) Environment and OpenAI client
 # -------------------------------------------------------------
 load_dotenv()  # loads OPENAI_API_KEY and OPENAI_MODEL if present
-client = OpenAI(api_key=os.getenv("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"))
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 MODEL = os.getenv("OPENAI_MODEL", "gpt-4o-mini")
 
 # -------------------------------------------------------------
